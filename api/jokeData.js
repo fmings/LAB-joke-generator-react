@@ -1,11 +1,15 @@
-import axios from 'axios';
+const endpoint = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=twopart';
 
-const endpoint = 'https://v2.jokeapi.dev/joke/Programming?safe-mode&type=twopart';
-
-const getJoke = async () => {
-  const jokeCall = await axios.get(endpoint);
-
-  return jokeCall.data;
-};
+const getJoke = () => new Promise((resolve, reject) => {
+  fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve({ setup: data.setup, delivery: data.delivery }))
+    .catch(reject);
+});
 
 export default getJoke;
