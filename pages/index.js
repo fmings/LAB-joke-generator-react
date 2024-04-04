@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from 'bootstrap';
+import { Button } from 'react-bootstrap';
 import getJoke from '../api/jokeData';
 import Joke from '../components/Joke';
 
